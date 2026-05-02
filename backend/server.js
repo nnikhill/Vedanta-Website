@@ -251,7 +251,9 @@ app.post("/api/payment", async (req, res) => {
   res.json(order);
 });
 
-
+app.get("/", (req, res) => {
+  res.send("Backend Running ✅");
+});
 
 // ================= START =================
 const PORT = process.env.PORT || 5000;
