@@ -39,29 +39,29 @@ export default function About() {
       {/* 🔥 FEATURES SECTION */}
       <div className="mt-16 grid md:grid-cols-3 gap-6 text-center">
         
-        <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
-          <h2 className="text-xl font-semibold text-purple-700 mb-2">
+        <div className="bg-rose-400 shadow-md rounded-xl p-6 hover:shadow-xl transition">
+          <h2 className="text-2xl font-semibold text-white mb-2">
             Expert Trainers
           </h2>
-          <p className="text-gray-600 text-sm">
+          <p className="text-white text-sm">
             Learn from experienced professionals with real industry knowledge.
           </p>
         </div>
 
-        <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
-          <h2 className="text-xl font-semibold text-purple-700 mb-2">
+        <div className="bg-emerald-300 shadow-md rounded-xl p-6 hover:shadow-xl transition">
+          <h2 className="text-2xl font-semibold text-white mb-2">
             Practical Learning
           </h2>
-          <p className="text-gray-600 text-sm">
+          <p className="text-white text-sm">
             Hands-on projects and real-world training approach.
           </p>
         </div>
 
-        <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
-          <h2 className="text-xl font-semibold text-purple-700 mb-2">
+        <div className="bg-yellow-300 shadow-md rounded-xl p-6 hover:shadow-xl transition">
+          <h2 className="text-2xl font-semibold text-white mb-2">
             Certification
           </h2>
-          <p className="text-gray-600 text-sm">
+          <p className="text-white text-sm">
             Get recognized certificates after course completion.
           </p>
         </div>

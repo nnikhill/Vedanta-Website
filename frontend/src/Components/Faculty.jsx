@@ -1,17 +1,17 @@
 export default function Faculty() {
   const faculty = [
     {
-      name: "Rahul Sharma",
+      name: "Nikhil Sharma",
       role: "Web Development Trainer",
       img: "https://i.pinimg.com/736x/bf/40/65/bf4065bdf22a347ec6f3625ace69f633.jpg",
     },
     {
-      name: "Priya Singh",
+      name: "Anita Ma'am",
       role: "Java Instructor",
       img: "https://i.pinimg.com/736x/93/bf/d1/93bfd1c9bcce4b7b1ae589c94a0616e6.jpg",
     },
     {
-      name: "Amit Verma",
+      name: "Ankita ma'am",
       role: "Python Trainer",
       img: "https://i.pinimg.com/736x/d1/ce/a5/d1cea5763844a786a38c05453daa9292.jpg",
     },
