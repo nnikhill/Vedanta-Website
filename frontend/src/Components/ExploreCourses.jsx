@@ -7,7 +7,7 @@ export function ExploreCourses() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/courses")
+      .get("https://vedanta-website.onrender.com/api/courses")
       .then((res) => setCourses(res.data))
       .catch(() => {
         // fallback demo data

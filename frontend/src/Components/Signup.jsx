@@ -11,7 +11,7 @@ export function Signup() {
   const submit = async () => {
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/api/signup", data);
+      await axios.post("https://vedanta-website.onrender.com/api/signup", data);
       alert("Signup Successful 🎉");
       nav("/login");
     } catch (err) {

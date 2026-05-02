@@ -17,7 +17,7 @@ export function SearchCourses() {
       setHasSearched(true);
 
       const res = await axios.get(
-        `http://localhost:5000/api/courses?search=${query}`
+        `https://vedanta-website.onrender.com/api/courses?search=${query}`
       );
 
       setCourses(res.data);

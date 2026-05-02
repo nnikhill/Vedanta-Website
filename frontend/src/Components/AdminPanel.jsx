@@ -37,26 +37,26 @@ export default function AdminPanel() {
   }, []);
 
   const getCourses = async () => {
-    const res = await axios.get("http://localhost:5000/api/courses");
+    const res = await axios.get("https://vedanta-website.onrender.com/api/courses");
     setCourses(res.data);
   };
 
   const getStats = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/stats", {
+    const res = await axios.get("https://vedanta-website.onrender.com/api/admin/stats", {
       headers: { Authorization: "Bearer " + token },
     });
     setStats(res.data);
   };
 
   const getMessages = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/messages", {
+    const res = await axios.get("https://vedanta-website.onrender.com/api/admin/messages", {
       headers: { Authorization: "Bearer " + token },
     });
     setMessages(res.data);
   };
 
   const getUsers = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/users", {
+    const res = await axios.get("https://vedanta-website.onrender.com/api/admin/users", {
       headers: { Authorization: "Bearer " + token },
     });
     setUsers(res.data);
@@ -64,7 +64,7 @@ export default function AdminPanel() {
 
   const getEnrollments = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/admin/enrollments",
+      "https://vedanta-website.onrender.com/api/admin/enrollments",
       { headers: { Authorization: "Bearer " + token } }
     );
     setEnrollments(res.data);
@@ -74,13 +74,13 @@ export default function AdminPanel() {
   const handleSubmit = async () => {
     if (editId) {
       await axios.put(
-        `http://localhost:5000/api/update-course/${editId}`,
+        `https://vedanta-website.onrender.com/api/update-course/${editId}`,
         course,
         { headers: { Authorization: "Bearer " + token } }
       );
     } else {
       await axios.post(
-        "http://localhost:5000/api/add-course",
+        "https://vedanta-website.onrender.com/api/add-course",
         course,
         { headers: { Authorization: "Bearer " + token } }
       );
@@ -94,7 +94,7 @@ export default function AdminPanel() {
 
   const deleteCourse = async (id) => {
     await axios.delete(
-      `http://localhost:5000/api/delete-course/${id}`,
+      `https://vedanta-website.onrender.com/api/delete-course/${id}`,
       { headers: { Authorization: "Bearer " + token } }
     );
     getCourses();

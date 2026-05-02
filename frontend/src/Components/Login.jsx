@@ -12,7 +12,7 @@ export function Login() {
     try {
       setLoading(true);
 
-      const res = await axios.post("http://localhost:5000/api/login", data);
+      const res = await axios.post("https://vedanta-website.onrender.com/api/login", data);
 
       // ✅ Save data
       localStorage.setItem("token", res.data.token);
