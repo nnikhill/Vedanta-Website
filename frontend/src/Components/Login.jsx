@@ -9,27 +9,46 @@ export function Login() {
   const nav = useNavigate();
 
   const submit = async () => {
+    if (!data.email || !data.password) {
+      return alert("Please fill all fields ⚠️");
+    }
+
     try {
       setLoading(true);
 
-      const res = await axios.post("https://vedanta-website.onrender.com/api/login", data);
+      const res = await axios.post(
+        "https://vedanta-website.onrender.com/api/login",
+        data
+      );
 
-      // ✅ Save data
+      // ✅ Save auth data
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("email", data.email);
-      localStorage.setItem("role", res.data.role); // 🔥 MOST IMPORTANT FIX
+      localStorage.setItem("role", res.data.role);
 
-      // 🔥 Trigger header update
+      // 🔥 Update UI instantly
       window.dispatchEvent(new Event("authChanged"));
 
       alert("Login Successful 🎉");
-      nav("/");
+
+      // 🔥 Role-based redirect
+      if (res.data.role === "admin") {
+        nav("/admin");
+      } else {
+        nav("/");
+      }
 
     } catch (err) {
-      alert(err.response?.data?.message || "Invalid Credentials ❌");
+      console.log(err);
+      alert(err.response?.data?.message || "Login Failed ❌");
     } finally {
       setLoading(false);
     }
+  };
+
+  // 🔥 Enter key support
+  const handleKey = (e) => {
+    if (e.key === "Enter") submit();
   };
 
   return (
@@ -71,6 +90,7 @@ export function Login() {
               onChange={(e) =>
                 setData({ ...data, email: e.target.value })
               }
+              onKeyDown={handleKey}
               className="w-full border border-gray-200 p-3 rounded-lg"
             />
 
@@ -81,13 +101,14 @@ export function Login() {
               onChange={(e) =>
                 setData({ ...data, password: e.target.value })
               }
+              onKeyDown={handleKey}
               className="w-full border border-gray-200 p-3 rounded-lg"
             />
 
             <button
               onClick={submit}
               disabled={loading}
-              className="w-full bg-purple-600 text-white py-3 rounded-lg"
+              className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700"
             >
               {loading ? "Logging in..." : "Login"}
             </button>
