@@ -4,11 +4,18 @@ import axios from "axios";
 export default function Messages() {
   const [messages, setMessages] = useState([]);
 
-  const token = localStorage.getItem("token");
   const API = "https://vedanta-website.onrender.com/api";
 
+  // ✅ SINGLE FUNCTION
   const fetchMessages = async () => {
     try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.log("No token ❌");
+        return;
+      }
+
       const res = await axios.get(`${API}/messages`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -20,6 +27,12 @@ export default function Messages() {
 
     } catch (err) {
       console.log("ERROR:", err.response?.data);
+
+      // ✅ AUTO LOGOUT
+      if (err.response?.status === 401) {
+        localStorage.clear();
+        window.location.href = "/login";
+      }
     }
   };
 
@@ -27,14 +40,22 @@ export default function Messages() {
     fetchMessages();
   }, []);
 
+  // ✅ DELETE FIX
   const handleDelete = async (id) => {
-    await axios.delete(`${API}/message/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    try {
+      const token = localStorage.getItem("token");
 
-    fetchMessages();
+      await axios.delete(`${API}/message/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      fetchMessages();
+
+    } catch (err) {
+      console.log("Delete Error:", err.response?.data);
+    }
   };
 
   return (

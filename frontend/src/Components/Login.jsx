@@ -53,7 +53,7 @@ export function Login() {
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-white to-purple-50 flex items-center justify-center px-6">
-      
+
       <div className="max-w-5xl w-full grid md:grid-cols-2 bg-white shadow-xl rounded-2xl overflow-hidden">
 
         <motion.div
