@@ -9,7 +9,7 @@ export default function AddCourse() {
     description: "",
   });
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
   const API = "https://vedanta-website.onrender.com/api";
 
   const handleChange = (e) => {
