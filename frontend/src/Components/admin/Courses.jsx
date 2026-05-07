@@ -4,7 +4,7 @@ import axios from "axios";
 export default function Courses() {
   const [courses, setCourses] = useState([]);
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
   const API = "https://vedanta-website.onrender.com/api";
 
   const fetchCourses = async () => {
