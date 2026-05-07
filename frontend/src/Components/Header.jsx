@@ -154,103 +154,178 @@ const userEmail = sessionStorage.getItem("email");
         </button>
       </div>
 
-      {/* MOBILE MENU */}
-      {mobileMenu && (
-        <div className="md:hidden bg-white shadow-md px-4 py-4 space-y-4 text-gray-700">
+     {/* MOBILE MENU */}
+{mobileMenu && (
+  <div className="md:hidden bg-white shadow-xl px-5 py-5 space-y-4 text-gray-700 rounded-b-2xl">
 
-          <Link to="/" onClick={handleNavClick}>Home</Link>
+    {/* HOME */}
+    <Link
+      to="/"
+      onClick={handleNavClick}
+      className="block font-medium hover:text-purple-600"
+    >
+      Home
+    </Link>
 
-          {/* REUSABLE DROPDOWN BLOCK */}
-          {[
-            {
-              title: "About",
-              key: "about",
-              links: [
-                { name: "About", path: "/about" },
-                { name: "Director", path: "/director" }
-              ]
-            },
-            {
-              title: "Courses",
-              key: "courses",
-              links: [
-                { name: "Basic", path: "/basic" },
-                { name: "Advanced", path: "/advanced" }
-              ]
-            },
-            {
-              title: "Student",
-              key: "student",
-              links: [
-                { name: "Result", path: "/result" },
-                { name: "Certificate", path: "/certificate" }
-              ]
-            },
-            {
-              title: "Download",
-              key: "download",
-              links: [
-                { name: "Notes", path: "/notes" },
-                { name: "Syllabus", path: "/syllabus" }
-              ]
-            },
-            {
-              title: "Franchise",
-              key: "franchise",
-              links: [
-                { name: "Apply", path: "/apply" },
-                { name: "Benefits", path: "/benefits" }
-              ]
-            },
-            {
-              title: "Gallery",
-              key: "gallery",
-              links: [
-                { name: "Photos", path: "/photos" },
-                { name: "Videos", path: "/videos" }
-              ]
-            }
-          ].map((menu) => (
-            <div key={menu.key}>
-              <button
-                className="w-full text-left font-medium"
-                onClick={() => toggleDropdown(menu.key)}
+    {/* DROPDOWNS */}
+    {[
+      {
+        title: "About",
+        key: "about",
+        links: [
+          { name: "About", path: "/about" },
+          { name: "Director", path: "/director" }
+        ]
+      },
+      {
+        title: "Courses",
+        key: "courses",
+        links: [
+          { name: "Basic", path: "/basic" },
+          { name: "Advanced", path: "/advanced" }
+        ]
+      },
+      {
+        title: "Student",
+        key: "student",
+        links: [
+          { name: "Result", path: "/result" },
+          { name: "Certificate", path: "/certificate" }
+        ]
+      },
+      {
+        title: "Download",
+        key: "download",
+        links: [
+          { name: "Notes", path: "/notes" },
+          { name: "Syllabus", path: "/syllabus" }
+        ]
+      },
+      {
+        title: "Franchise",
+        key: "franchise",
+        links: [
+          { name: "Apply", path: "/apply" },
+          { name: "Benefits", path: "/benefits" }
+        ]
+      },
+      {
+        title: "Gallery",
+        key: "gallery",
+        links: [
+          { name: "Photos", path: "/photos" },
+          { name: "Videos", path: "/videos" }
+        ]
+      }
+    ].map((menu) => (
+      <div
+        key={menu.key}
+        className="border-b pb-3"
+      >
+
+        <button
+          className="w-full flex justify-between items-center font-medium text-left hover:text-purple-600"
+          onClick={() => toggleDropdown(menu.key)}
+        >
+          {menu.title}
+
+          <span>
+            {openDropdown === menu.key ? "−" : "+"}
+          </span>
+        </button>
+
+        {openDropdown === menu.key && (
+          <div className="mt-3 ml-2 flex flex-col gap-3">
+
+            {menu.links.map((link, i) => (
+              <Link
+                key={i}
+                to={link.path}
+                onClick={handleNavClick}
+                className="text-sm text-gray-600 hover:text-purple-600"
               >
-                {menu.title} ▾
-              </button>
-
-              {openDropdown === menu.key && (
-                <div className="ml-4 mt-2 space-y-2">
-                  {menu.links.map((link, i) => (
-                    <Link key={i} to={link.path} onClick={handleNavClick}>
-                      {link.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-
-          <button onClick={scrollToContact}>Contact</button>
-          <Link to="/payment" onClick={handleNavClick}>Fee Payment</Link>
-
-          {/* AUTH */}
-          {isLogin ? (
-            <>
-              <div className="text-sm text-purple-700">{email}</div>
-              <button onClick={logout} className="bg-red-500 text-white px-3 py-1 rounded">
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link to="/login" onClick={handleNavClick}>Login</Link>
-              <Link to="/signup" onClick={handleNavClick} className="bg-purple-600 text-white px-3 py-1 rounded">
-                Signup
+                {link.name}
               </Link>
-            </>
-          )}
+            ))}
+
+          </div>
+        )}
+      </div>
+    ))}
+
+    {/* CONTACT + PAYMENT */}
+    <div className="flex flex-col gap-3 pt-2">
+
+      <button
+        onClick={scrollToContact}
+        className="text-left font-medium hover:text-purple-600"
+      >
+        Contact
+      </button>
+
+      <Link
+        to="/payment"
+        onClick={handleNavClick}
+        className="font-medium hover:text-purple-600"
+      >
+        Fee Payment
+      </Link>
+
+    </div>
+
+    {/* AUTH SECTION */}
+    <div className="pt-5 border-t">
+
+      {isLogin ? (
+
+        <div className="space-y-3">
+
+          <div className="flex items-center gap-3 bg-purple-50 p-3 rounded-xl">
+
+            <div className="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold">
+              {email?.charAt(0).toUpperCase()}
+            </div>
+
+            <div className="text-sm text-purple-700 break-all">
+              {email}
+            </div>
+
+          </div>
+
+          <button
+            onClick={logout}
+            className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl font-medium transition"
+          >
+            Logout
+          </button>
+
         </div>
+
+      ) : (
+
+        <div className="flex gap-3">
+
+          <Link
+            to="/login"
+            onClick={handleNavClick}
+            className="w-1/2 border-2 border-purple-600 text-purple-600 text-center py-3 rounded-xl font-medium hover:bg-purple-50 transition"
+          >
+            Login
+          </Link>
+
+          <Link
+            to="/signup"
+            onClick={handleNavClick}
+            className="w-1/2 bg-purple-600 text-white text-center py-3 rounded-xl font-medium hover:bg-purple-700 transition"
+          >
+            Signup
+          </Link>
+
+        </div>
+
+      )}
+    </div>
+  </div>
       )}
     </header>
   );
