@@ -15,8 +15,8 @@ export default function Header() {
   };
 
   const checkAuth = () => {
-    const token = localStorage.getItem("token");
-    const userEmail = localStorage.getItem("email");
+    const token = sessionStorage.getItem("token");
+const userEmail = sessionStorage.getItem("email");
 
     setIsLogin(!!token);
     setEmail(userEmail);
@@ -29,10 +29,10 @@ export default function Header() {
   }, []);
 
   const logout = () => {
-    localStorage.clear();
-    window.dispatchEvent(new Event("authChanged"));
-    navigate("/login");
-  };
+  sessionStorage.clear();
+  window.dispatchEvent(new Event("authChanged"));
+  navigate("/login");
+};
 
   const handleNavClick = () => {
     setMobileMenu(false);

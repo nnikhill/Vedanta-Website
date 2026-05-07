@@ -4,16 +4,24 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 
 export function Login() {
-  const [data, setData] = useState({ email: "", password: "" });
+
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
   const [loading, setLoading] = useState(false);
+
   const nav = useNavigate();
 
   const submit = async () => {
+
     if (!data.email || !data.password) {
       return alert("Please fill all fields ⚠️");
     }
 
     try {
+
       setLoading(true);
 
       const res = await axios.post(
@@ -21,17 +29,17 @@ export function Login() {
         data
       );
 
-      // ✅ Save auth data
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("email", data.email);
-      localStorage.setItem("role", res.data.role);
+      // ✅ Save in sessionStorage
+      sessionStorage.setItem("token", res.data.token);
+      sessionStorage.setItem("email", data.email);
+      sessionStorage.setItem("role", res.data.role);
 
       // 🔥 Update UI instantly
       window.dispatchEvent(new Event("authChanged"));
 
       alert("Login Successful 🎉");
 
-      // 🔥 Role-based redirect
+      // 🔥 Redirect
       if (res.data.role === "admin") {
         nav("/admin");
       } else {
@@ -39,16 +47,25 @@ export function Login() {
       }
 
     } catch (err) {
+
       console.log(err);
-      alert(err.response?.data?.message || "Login Failed ❌");
+
+      alert(
+        err.response?.data?.message || "Login Failed ❌"
+      );
+
     } finally {
+
       setLoading(false);
+
     }
   };
 
   // 🔥 Enter key support
   const handleKey = (e) => {
-    if (e.key === "Enter") submit();
+    if (e.key === "Enter") {
+      submit();
+    }
   };
 
   return (
@@ -56,6 +73,7 @@ export function Login() {
 
       <div className="max-w-5xl w-full grid md:grid-cols-2 bg-white shadow-xl rounded-2xl overflow-hidden">
 
+        {/* LEFT IMAGE */}
         <motion.div
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
@@ -68,11 +86,13 @@ export function Login() {
           />
         </motion.div>
 
+        {/* RIGHT FORM */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
           className="p-8 md:p-10"
         >
+
           <h2 className="text-3xl font-bold text-gray-800">
             Welcome Back 👋
           </h2>
@@ -88,7 +108,10 @@ export function Login() {
               placeholder="Enter your email"
               value={data.email}
               onChange={(e) =>
-                setData({ ...data, email: e.target.value })
+                setData({
+                  ...data,
+                  email: e.target.value,
+                })
               }
               onKeyDown={handleKey}
               className="w-full border border-gray-200 p-3 rounded-lg"
@@ -99,7 +122,10 @@ export function Login() {
               placeholder="Enter your password"
               value={data.password}
               onChange={(e) =>
-                setData({ ...data, password: e.target.value })
+                setData({
+                  ...data,
+                  password: e.target.value,
+                })
               }
               onKeyDown={handleKey}
               className="w-full border border-gray-200 p-3 rounded-lg"
@@ -112,14 +138,21 @@ export function Login() {
             >
               {loading ? "Logging in..." : "Login"}
             </button>
+
           </div>
 
           <p className="mt-6 text-sm text-center text-gray-500">
             Don’t have an account?{" "}
-            <Link to="/signup" className="text-purple-600 hover:underline">
+
+            <Link
+              to="/signup"
+              className="text-purple-600 hover:underline"
+            >
               Signup
             </Link>
+
           </p>
+
         </motion.div>
       </div>
     </section>

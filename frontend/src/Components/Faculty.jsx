@@ -1,19 +1,40 @@
+import nikhilImg from "../images/nikhil.jpeg";
+import vikramImg from "../images/vikram.jpeg";
+import ankitaImg from "../images/ankita.jpeg";
+import anitaImg from "../images/anita.jpeg";
+import seemaImg from "../images/seema.jpeg";
+import manishaImg from "../images/manisha.jpeg";
 export default function Faculty() {
   const faculty = [
     {
       name: "Nikhil Sharma",
       role: "Web Development Trainer",
-      img: "https://i.pinimg.com/736x/bf/40/65/bf4065bdf22a347ec6f3625ace69f633.jpg",
+      img: nikhilImg,
     },
     {
-      name: "Anita Ma'am",
-      role: "Java Instructor",
-      img: "https://i.pinimg.com/736x/93/bf/d1/93bfd1c9bcce4b7b1ae589c94a0616e6.jpg",
+      name: "Vikram Singh",
+      role: "personality Development trainer",
+      img: vikramImg,
     },
     {
       name: "Ankita ma'am",
       role: "Python Trainer",
-      img: "https://i.pinimg.com/736x/d1/ce/a5/d1cea5763844a786a38c05453daa9292.jpg",
+      img: ankitaImg,
+    },
+    {
+      name: "Anita Kumari",
+      role: "Python Trainer",
+      img: anitaImg,
+    },
+    {
+      name: "Seema Kandulna",
+      role: "Python Trainer",
+      img: seemaImg,
+    },
+    {
+      name: "Manisha Kumari",
+      role: "Python Trainer",
+      img: manishaImg,
     },
   ];
 
